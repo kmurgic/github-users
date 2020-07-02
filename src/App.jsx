@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Header from './Header';
-import users from './users';
+import users from './fixtures/users';
 import UserList from './UserList';
 
 function App() {
