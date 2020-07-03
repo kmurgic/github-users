@@ -42,7 +42,7 @@ const UserProfile = (props) => {
       {!user && <p>User not found</p>}
       {user && (
         <>
-          <div className={headerClass}>
+          <div className={headerClass} data-testid="user-profile-header">
             <User
               imgUrl={user.imgUrl}
               isProfile

@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import Header from '.';
-import renderWithRouter from '../../renderWithRouter';
+import renderWithRouter from '../../testUtils/renderWithRouter';
 
 test('updates search text', () => {
   const mockSearch = jest.fn();
@@ -21,6 +21,21 @@ test('performs a search', () => {
   const searchButton = getByRole('button');
   fireEvent.click(searchButton);
   expect(mockSearch).toHaveBeenCalledWith('foo');
+});
+
+test('select input text on focus', () => {
+  const mockSearch = jest.fn();
+  const { queryByPlaceholderText } = renderWithRouter(
+    <Header currentSearch="" search={mockSearch} />,
+  );
+  const searchInput = queryByPlaceholderText('Search...');
+  fireEvent.input(searchInput, { target: { value: 'foo' } });
+  expect(searchInput.value).toBe('foo');
+  const onSelect = jest.fn();
+  searchInput.addEventListener('select', onSelect);
+  fireEvent.focus(searchInput);
+  searchInput.removeEventListener('select', onSelect);
+  expect(onSelect).toHaveBeenCalled();
 });
 
 test('clears search text', () => {

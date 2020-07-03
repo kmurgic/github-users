@@ -1,7 +1,7 @@
 import React from 'react';
 import users from '../../fixtures/users';
 import UserList from '.';
-import renderWithRouter from '../../renderWithRouter';
+import renderWithRouter from '../../testUtils/renderWithRouter';
 
 test('displays a list of all users when there is no search text', () => {
   const { queryByText } = renderWithRouter(<UserList searchTerm="" users={users} />);

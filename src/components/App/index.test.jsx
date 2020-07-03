@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import App from '.';
-import renderWithRouter from '../../renderWithRouter';
+import renderWithRouter from '../../testUtils/renderWithRouter';
 
 // Integration tests
 
