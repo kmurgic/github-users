@@ -1,24 +1,39 @@
-// import React from 'react';
-// import { fireEvent } from '@testing-library/react';
-// import App from '.';
-// import renderWithRouter from '../../testUtils/renderWithRouter';
+import React from 'react';
+import App from '.';
+import renderWithRouter from '../../testUtils/renderWithRouter';
+import users from '../../fixtures/users';
+import repositories from '../../fixtures/repositories';
+import followers from '../../fixtures/followers';
 
-// // Integration tests
+// Integration tests
 
-// // test('renders', () => {
-// //   const { getByText } = renderWithRouter(<App />);
-// //   const title = getByText(/github user list/i);
-// //   expect(title).toBeInTheDocument();
-// // });
+let oldEnv;
+beforeEach(() => {
+  oldEnv = process.env;
+  const mockUsers = { ...users };
+  const mockRepositories = { ...repositories };
+  const mockFollowers = { ...followers };
+  jest.mock('../../api/fetchUsers', () => ({
+    __esModule: true,
+    default: jest.fn(() => (mockUsers)),
+  }));
+  jest.mock('../../api/fetchRepositories', () => ({
+    __esModule: true,
+    default: jest.fn(() => (mockRepositories)),
+  }));
+  jest.mock('../../api/fetchFollowers', () => ({
+    __esModule: true,
+    default: jest.fn(() => (mockFollowers)),
+  }));
+  process.env = { PUBLIC_URL: '/' };
+});
+afterEach(() => {
+  jest.clearAllMocks();
+  process.env = oldEnv;
+});
 
-// // test('filters users on search', () => {
-// //   const { getByRole, queryByText, queryByPlaceholderText } = renderWithRouter(<App />);
-// //   expect(queryByText('atmos')).not.toBe(null);
-// //   expect(queryByText('wycats')).not.toBe(null);
-// //   const searchInput = queryByPlaceholderText('Search...');
-// //   fireEvent.input(searchInput, { target: { value: 'mo' } });
-// //   const searchButton = getByRole('button');
-// //   fireEvent.click(searchButton);
-// //   expect(queryByText('atmos')).not.toBe(null);
-// //   expect(queryByText('wycats')).toBe(null);
-// // });
+test('renders with a title', () => {
+  const { getByText } = renderWithRouter(<App />);
+  const title = getByText(/github user list/i);
+  expect(title).toBeInTheDocument();
+});
