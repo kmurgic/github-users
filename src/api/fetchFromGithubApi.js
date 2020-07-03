@@ -9,7 +9,8 @@ const fetchFromGithubApi = async (url) => {
     const data = await response.json();
     const linkHeader = response.headers.get('Link');
     const parsedLinkHeader = parse(linkHeader);
-    const nextUrl = (parsedLinkHeader.next || null) && parsedLinkHeader.next.url;
+    const parsedLinkHeaderIncludesNext = !!(parsedLinkHeader && parsedLinkHeader.next);
+    const nextUrl = (parsedLinkHeaderIncludesNext || null) && parsedLinkHeader.next.url;
     return { nextUrl, data };
   } catch (error) {
     return { error };
