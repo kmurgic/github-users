@@ -2,7 +2,7 @@
 
 Github users loads users from the Github API.  Infinite scroll is enabled for the list of users as well as for an individual user's followers and repositories.  The page remembers data that was previously loaded from the API, so you will only see loading spinners the first time you go to a new page.  The page reloads data from the API on refresh by design.
 
-<img src='/public/movieQScreenShot.png' width='850px' height='459px' alt='screenshot'/>
+<img src='/public/GitHubUserList.png' width='580px' height='540px' alt='screenshot'/>
 
 ## Built With
 
@@ -23,4 +23,4 @@ Github users loads users from the Github API.  Infinite scroll is enabled for th
 
 ## Demo Video
 
-[<img src='public/GitHubUserList.png' width='290px' height='270px' alt='github-user-list-screenshot'/>](https://youtu.be/DPk5FQq1kpE)
+[<img src='/public/GitHubUserList.png' width='290px' height='270px' alt='github-user-list-screenshot'/>](https://youtu.be/DPk5FQq1kpE)
