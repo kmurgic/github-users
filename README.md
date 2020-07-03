@@ -23,4 +23,4 @@ Github users loads users from the Github API.  Infinite scroll is enabled for th
 
 ## Demo Video
 
-[<img src='/public/GitHubUserList.png' width='290px' height='270px' alt='github-user-list-screenshot'/>](https://youtu.be/DPk5FQq1kpE)
+[<img src='public/GitHubUserList.png' width='290px' height='270px' alt='github-user-list-screenshot'/>](https://youtu.be/DPk5FQq1kpE)
