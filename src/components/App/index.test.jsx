@@ -25,7 +25,7 @@ beforeEach(() => {
     __esModule: true,
     default: jest.fn(() => (mockFollowers)),
   }));
-  process.env = { PUBLIC_URL: '/' };
+  process.env = { PUBLIC_URL: '' };
 });
 afterEach(() => {
   jest.clearAllMocks();
