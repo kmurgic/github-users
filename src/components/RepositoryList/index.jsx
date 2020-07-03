@@ -1,17 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Repository from '../Repository';
+import LoadingSpinner from '../LoadingSpinner';
+import LoadingEllipsis from '../LoadingEllipsis';
 import './index.css';
 
 const RepositoryList = (props) => {
-  const { searchTerm, repos } = props;
-  const filteredRepos = repos.filter((repo) => (
+  const { loading, searchTerm, repositories } = props;
+  const filteredRepos = repositories.filter((repo) => (
     repo.name.toLowerCase().includes(searchTerm.toLowerCase().trim())
   ));
 
+  const showNoResultsText = ((searchTerm || !loading) && !filteredRepos.length);
+
+  /*  Search page is static since we are only filtering previously retrieved results, not searching
+      the API. Therefore, no loading spinners should be shown when a search is in progress */
+  const showLoadingSpinner = !searchTerm && loading && !filteredRepos.length;
+  const showLoadingEllipsis = !searchTerm && loading && filteredRepos.length;
+
   return (
     <div className="RepositoryList">
-      {!filteredRepos.length && <p>No matching repositories</p>}
+      {showNoResultsText && <p>No matching repositories</p>}
       {filteredRepos.map((repo) => (
         <Repository
           key={repo.id}
@@ -22,13 +31,16 @@ const RepositoryList = (props) => {
           watchers={repo.watchers}
         />
       ))}
+      {showLoadingSpinner && <LoadingSpinner />}
+      {showLoadingEllipsis && <LoadingEllipsis />}
     </div>
   );
 };
 
 RepositoryList.propTypes = {
+  loading: PropTypes.bool.isRequired,
   searchTerm: PropTypes.string.isRequired,
-  repos: PropTypes.arrayOf(
+  repositories: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       description: PropTypes.string.isRequired,

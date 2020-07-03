@@ -1,4 +1,4 @@
-const repoListRaw = [
+const repositoryListRaw = [
   {
     id: 100396864,
     node_id: 'MDEwOlJlcG9zaXRvcnkxMDAzOTY4NjQ=',
@@ -2887,11 +2887,11 @@ const repoListRaw = [
   },
 ];
 
-export default repoListRaw.map((repo) => ({
-  id: repo.id,
-  description: repo.description || '',
-  forks: repo.forks,
-  link: repo.html_url,
-  name: repo.name,
-  watchers: repo.watchers,
+export default repositoryListRaw.map((repository) => ({
+  id: repository.id,
+  description: repository.description || '',
+  forks: repository.forks,
+  link: repository.html_url,
+  name: repository.name,
+  watchers: repository.watchers,
 }));

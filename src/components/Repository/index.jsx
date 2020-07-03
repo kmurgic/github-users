@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faCodeBranch } from '@fortawesome/free-solid-svg-icons';
 import './index.css';
 
-const Repository = (props) => {
+const Repository = memo((props) => {
   const {
     watchers, forks, link, name, description,
   } = props;
@@ -26,7 +26,7 @@ const Repository = (props) => {
       </div>
     </div>
   );
-};
+});
 
 Repository.propTypes = {
   description: PropTypes.string.isRequired,

@@ -6,12 +6,12 @@ import {
 import User from '../User';
 import RepositoryList from '../RepositoryList';
 import UserList from '../UserList';
-import followers from '../../fixtures/followers';
-import repos from '../../fixtures/repos';
 import './index.css';
 
 const UserProfile = (props) => {
-  const { searchTerm, users } = props;
+  const {
+    followers, followersLoading, repositories, repositoriesLoading, searchTerm, users,
+  } = props;
   const { url } = useRouteMatch();
   const { username } = useParams();
   const [shrinkHeader, setShrinkHeader] = useState(false);
@@ -57,10 +57,19 @@ const UserProfile = (props) => {
           </div>
           <Switch>
             <Route path={`${url}/followers`}>
-              <UserList isFollowerList searchTerm={searchTerm} users={followers} />
+              <UserList
+                isFollowerList
+                loading={followersLoading}
+                searchTerm={searchTerm}
+                users={followers}
+              />
             </Route>
-            <Route path="/">
-              <RepositoryList searchTerm={searchTerm} repos={repos} />
+            <Route path={`${url}/repositories`}>
+              <RepositoryList
+                loading={repositoriesLoading}
+                searchTerm={searchTerm}
+                repositories={repositories}
+              />
             </Route>
           </Switch>
         </>
@@ -70,6 +79,26 @@ const UserProfile = (props) => {
 };
 
 UserProfile.propTypes = {
+  followers: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      imgUrl: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  followersLoading: PropTypes.bool.isRequired,
+  repositories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      forks: PropTypes.number.isRequired,
+      link: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      watchers: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
+  repositoriesLoading: PropTypes.bool.isRequired,
   searchTerm: PropTypes.string.isRequired,
   users: PropTypes.arrayOf(
     PropTypes.shape({

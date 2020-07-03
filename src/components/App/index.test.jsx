@@ -1,24 +1,24 @@
-import React from 'react';
-import { fireEvent } from '@testing-library/react';
-import App from '.';
-import renderWithRouter from '../../testUtils/renderWithRouter';
+// import React from 'react';
+// import { fireEvent } from '@testing-library/react';
+// import App from '.';
+// import renderWithRouter from '../../testUtils/renderWithRouter';
 
-// Integration tests
+// // Integration tests
 
-test('renders', () => {
-  const { getByText } = renderWithRouter(<App />);
-  const title = getByText(/github user list/i);
-  expect(title).toBeInTheDocument();
-});
+// // test('renders', () => {
+// //   const { getByText } = renderWithRouter(<App />);
+// //   const title = getByText(/github user list/i);
+// //   expect(title).toBeInTheDocument();
+// // });
 
-test('filters users on search', () => {
-  const { getByRole, queryByText, queryByPlaceholderText } = renderWithRouter(<App />);
-  expect(queryByText('atmos')).not.toBe(null);
-  expect(queryByText('wycats')).not.toBe(null);
-  const searchInput = queryByPlaceholderText('Search...');
-  fireEvent.input(searchInput, { target: { value: 'mo' } });
-  const searchButton = getByRole('button');
-  fireEvent.click(searchButton);
-  expect(queryByText('atmos')).not.toBe(null);
-  expect(queryByText('wycats')).toBe(null);
-});
+// // test('filters users on search', () => {
+// //   const { getByRole, queryByText, queryByPlaceholderText } = renderWithRouter(<App />);
+// //   expect(queryByText('atmos')).not.toBe(null);
+// //   expect(queryByText('wycats')).not.toBe(null);
+// //   const searchInput = queryByPlaceholderText('Search...');
+// //   fireEvent.input(searchInput, { target: { value: 'mo' } });
+// //   const searchButton = getByRole('button');
+// //   fireEvent.click(searchButton);
+// //   expect(queryByText('atmos')).not.toBe(null);
+// //   expect(queryByText('wycats')).toBe(null);
+// // });

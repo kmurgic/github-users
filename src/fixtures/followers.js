@@ -1,4 +1,4 @@
-const followerListRaw = [
+const followersListRaw = [
   {
     login: 'tokuda109',
     id: 108762,
@@ -601,7 +601,7 @@ const followerListRaw = [
   },
 ];
 
-export default followerListRaw.map((user) => ({
+export default followersListRaw.map((user) => ({
   id: user.id,
   imgUrl: user.avatar_url,
   url: user.html_url,

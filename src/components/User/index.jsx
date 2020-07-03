@@ -15,7 +15,7 @@ const User = memo((props) => {
       </div>
       <div className="User__username-container">
         {isProfile && <a className="User__username" href={url} rel="noopener noreferrer" target="_blank">{username}</a>}
-        {username && !isProfile && <Link className="User__username" to={`/users/${username}/repositories`}>{username}</Link>}
+        {username && !isProfile && <Link className="User__username" to={`/${username}/repositories`}>{username}</Link>}
       </div>
     </div>
   );
