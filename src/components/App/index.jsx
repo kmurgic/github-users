@@ -57,17 +57,17 @@ function App() {
   // TODO: Better error handling
   const handleError = (error) => console.error(error);
 
-  const followersPathRegex = /^\/[a-z\d-]*\/followers$/;
+  const followersPathRegex = /\/[a-z\d-]*\/followers$/i;
   const isFollowersPage = followersPathRegex.test(location.pathname);
 
-  const repositoriesPathRegex = /^\/[a-z\d-]*\/repositories$/;
+  const repositoriesPathRegex = /\/[a-z\d-]*\/repositories$/i;
   const isRepositoriesPage = repositoriesPathRegex.test(location.pathname);
 
   useEffect(() => {
     const fetchMoreUsersIfNeeded = async () => {
       const repeatUrl = nextUserUrl === previousUserUrl.current;
       if (!searchTermRef.current && !usersLoading && !repeatUrl && nextUserUrl !== null
-        && location.pathname === '/' && getNumberOfHiddenItems() < 100) {
+        && location.pathname === `${process.env.PUBLIC_URL}` && getNumberOfHiddenItems() < 100) {
         previousUserUrl.current = nextUserUrl;
         setUsersLoading(true);
         const { error, nextUrl, userList } = await fetchUsers(nextUserUrl);
@@ -88,7 +88,9 @@ function App() {
         }
         return;
       }
-      const selectedUser = location.pathname.slice(1, location.pathname.indexOf('/', 1));
+      const lastSlash = location.pathname.lastIndexOf('/');
+      const penultimateSlash = location.pathname.lastIndexOf('/', lastSlash - 1);
+      const selectedUser = location.pathname.slice(penultimateSlash + 1, lastSlash);
       setRepositoriesForSelectedUser(repositories[selectedUser]
         ? repositories[selectedUser].list : []);
       const firstFetchUrl = `https://api.github.com/users/${selectedUser}/repos`;
@@ -138,7 +140,9 @@ function App() {
         }
         return;
       }
-      const selectedUser = location.pathname.slice(1, location.pathname.indexOf('/', 1));
+      const lastSlash = location.pathname.lastIndexOf('/');
+      const penultimateSlash = location.pathname.lastIndexOf('/', lastSlash - 1);
+      const selectedUser = location.pathname.slice(penultimateSlash + 1, lastSlash);
       setFollowersForSelectedUser(followers[selectedUser]
         ? followers[selectedUser].list : []);
       const firstFetchUrl = `https://api.github.com/users/${selectedUser}/followers`;
@@ -197,11 +201,11 @@ function App() {
 
   if (!users.length && (isFollowersPage || isRepositoriesPage)) {
     return (
-      <Redirect to="/" />
+      <Redirect to={`${process.env.PUBLIC_URL}`} />
     );
   }
 
-  if (location.pathname !== '/' && !isFollowersPage && !isRepositoriesPage) {
+  if (location.pathname !== `${process.env.PUBLIC_URL}` && !isFollowersPage && !isRepositoriesPage) {
     return (
       <NotFound />
     );
@@ -211,10 +215,10 @@ function App() {
     <div className="App">
       <Header search={search} currentSearch={searchTerm} />
       <Switch>
-        <Route exact path="/">
+        <Route exact path={`${process.env.PUBLIC_URL}`}>
           <UserList loading={usersLoading} searchTerm={searchTerm} users={users} />
         </Route>
-        <Route path="/:username">
+        <Route path={`${process.env.PUBLIC_URL}/:username`}>
           <UserProfile
             followers={followersForSelectedUser}
             followersLoading={followersLoading}

@@ -2,6 +2,7 @@ import parse from 'parse-link-header';
 
 const fetchFromGithubApi = async (url) => {
   const token = process.env.REACT_APP_AUTH_TOKEN;
+  console.log(token);
   const headers = token ? { authorization: `token ${token}` } : {};
   try {
     const response = await fetch(url, { headers });

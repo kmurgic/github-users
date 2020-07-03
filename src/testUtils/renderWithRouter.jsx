@@ -19,14 +19,14 @@ const renderWithRouter = (
     if (useMemoryRouter) {
       return (
         <MemoryRouter initialEntries={[route]}>
-          {path && <Route path={path}>{children}</Route>}
+          {path && <Route path={`${process.env.PUBLIC_URL}${path}`}>{children}</Route>}
           {!path && children}
         </MemoryRouter>
       );
     }
     return (
       <Router history={history}>
-        {path && <Route path={path}>{children}</Route>}
+        {path && <Route path={`${process.env.PUBLIC_URL}${path}`}>{children}</Route>}
         {!path && children}
       </Router>
     );
