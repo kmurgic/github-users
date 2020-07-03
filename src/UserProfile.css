@@ -1,0 +1,62 @@
+.UserProfile {
+  height: 5em;
+  margin-top: 0;
+  padding-top: 9.125rem;
+  min-height: 100%;
+}
+
+.UserProfile--shift-down {
+  background-color: #444444;
+  height: 5em;
+  margin-top: 0;
+  padding-top: 18rem;
+}
+
+.UserProfile__header {
+  background-color: #081828;
+  border-bottom: 2px solid #f9f9f9;
+  padding-top: 1rem;
+  position: sticky;
+  top: 146px;
+}
+
+.UserProfile__header--small {
+  background-color: #081828;
+  border-bottom: 2px solid #f9f9f9;
+  height: 2.375rem;
+  padding-top: 1rem;
+  position: fixed;
+  top: 146px;
+  width: 100%;
+}
+
+.UserProfile__tab-switcher {
+  font-size: 1.2em;
+  line-height: 1.15;
+  padding-bottom: 1rem;
+}
+
+.UserProfile__tab {
+  color: #a56332;
+  margin: 0 0.5em;
+  text-decoration: none;
+}
+
+.UserProfile__tab--active {
+  color: #d57332;
+  margin: 0 0.5em;
+}
+
+@media screen and (max-width: 1023px) {
+  .UserProfile__header--small .UserProfile__tab-switcher {
+    padding-right: 4rem;
+    text-align: right;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .UserProfile__header--small .UserProfile__tab-switcher {
+    padding-right: 0;
+    text-align: center;
+  }
+}

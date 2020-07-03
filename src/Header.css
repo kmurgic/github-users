@@ -1,17 +1,22 @@
 .Header {
-  background-color: #181818;
+  background-color: #1a1a1a;
   border-bottom: 2px solid #f9f9f9;
-  height: 7rem;
+  height: 8rem;
   padding-top: 1rem;
   position: fixed;
   width: 100%;
+  z-index: 1;
 }
 
 .Header__title {
-  color: #87c8f6;
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin-bottom: 0.5rem;
   margin-top: 0;
+}
+
+.Header__link {
+  color: #87c8f6;
+  text-decoration: none;
 }
 
 .Header__form {
@@ -20,9 +25,10 @@
   border: 1px solid #333333;
   border-radius: 1.5rem;
   display: flex;
-  height: 1.75rem; 
+  height: 2rem; 
   margin: auto;
-  padding: 0 0.5rem;
+  max-width: 75%;
+  padding: 0 0.75rem;
   width: 18rem;
 }
 
@@ -32,10 +38,10 @@
   border-radius: 0;
   box-sizing: border-box;
   font-family: inherit;
-  font-size: 0.75rem;
+  font-size: 1rem;
   flex-grow: 1;
-  height: 1.5rem;
-  line-height: 1.5rem;
+  height: 1.75rem;
+  line-height: 1.75rem;
   margin: 0;
   overflow: visible;
   padding: 0.5rem;
@@ -63,11 +69,15 @@
   box-sizing: border-box;
   height: 1.5rem;
   padding: 0.125rem;
+}
+
+/* override specificity of font awesome class */
+.Header__icon-button .Header__icon {
   width: 1.5rem;
 }
 
 .Header__search-text {
-  font-size: 0.8rem;
+  font-size: 1rem;
   height: 1.2rem;
   line-height: 1.2rem;
 }
@@ -79,7 +89,7 @@
   cursor: pointer;
   font-weight: bold;
   font-size: 0.6rem;
-  height: 1rem;
+  height: 1.2rem;
   margin-left: 0.5rem;
   text-transform: uppercase;
 }

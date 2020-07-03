@@ -602,6 +602,8 @@ const userListRaw = [
 ];
 
 export default userListRaw.map((user) => ({
+  id: user.id,
   imgUrl: user.avatar_url,
+  url: user.html_url,
   username: user.login,
 }));

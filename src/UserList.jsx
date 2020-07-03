@@ -4,26 +4,36 @@ import User from './User';
 import './UserList.css';
 
 const UserList = (props) => {
-  const { searchTerm, users } = props;
+  const { isFollowerList, searchTerm, users } = props;
+  const containerClass = isFollowerList ? 'UserList--followers' : 'UserList';
   const filteredUsers = users.filter((user) => (
     user.username.toLowerCase().includes(searchTerm.toLowerCase().trim())
   ));
 
+  const noResultsText = `No matching ${isFollowerList ? 'followers' : 'users'}`;
+
   return (
-    <div className="UserList">
-      {!filteredUsers.length && <p>No matching users</p>}
+    <div className={containerClass}>
+      {!filteredUsers.length && <p>{noResultsText}</p>}
       {filteredUsers.map((user) => (
-        <User key={user.username} imgUrl={user.imgUrl} username={user.username} />
+        <User key={user.id} imgUrl={user.imgUrl} username={user.username} />
       ))}
     </div>
   );
 };
 
+UserList.defaultProps = {
+  isFollowerList: false,
+};
+
 UserList.propTypes = {
+  isFollowerList: PropTypes.bool,
   searchTerm: PropTypes.string.isRequired,
   users: PropTypes.arrayOf(
     PropTypes.shape({
-      username: PropTypes.string,
+      id: PropTypes.number.isRequired,
+      imgUrl: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
     }),
   ).isRequired,
 };

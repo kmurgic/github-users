@@ -1,10 +1,11 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import Header from './Header';
+import renderWithRouter from './renderWithRouter';
 
 test('updates search text', () => {
   const mockSearch = jest.fn();
-  const { queryByPlaceholderText } = render(<Header currentSearch="" search={mockSearch} />);
+  const { queryByPlaceholderText } = renderWithRouter(<Header currentSearch="" search={mockSearch} />);
   const searchInput = queryByPlaceholderText('Search...');
   fireEvent.input(searchInput, { target: { value: 'foo' } });
   expect(searchInput.value).toBe('foo');
@@ -12,7 +13,7 @@ test('updates search text', () => {
 
 test('performs a search', () => {
   const mockSearch = jest.fn();
-  const { queryByPlaceholderText, getByRole } = render(
+  const { queryByPlaceholderText, getByRole } = renderWithRouter(
     <Header currentSearch="" search={mockSearch} />,
   );
   const searchInput = queryByPlaceholderText('Search...');
@@ -24,7 +25,7 @@ test('performs a search', () => {
 
 test('clears search text', () => {
   const mockSearch = jest.fn();
-  const { queryByPlaceholderText, queryByText } = render(<Header currentSearch="foo" search={mockSearch} />);
+  const { queryByPlaceholderText, queryByText } = renderWithRouter(<Header currentSearch="foo" search={mockSearch} />);
   const searchInput = queryByPlaceholderText('Search...');
   fireEvent.input(searchInput, { target: { value: 'foo' } });
   const searchButton = document.querySelector('.Header__icon-button');

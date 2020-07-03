@@ -1,0 +1,43 @@
+.Repository {
+  border-bottom: 2px solid #f9f9f9;
+  padding: 0.5rem 10%;
+  height: 5.25rem;
+}
+
+.Repository__title {
+  color: #d57332;
+  text-align: left;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.Repository__link {
+  color: #d57332;
+}
+
+.Repository__link:visited {
+  color: #d53a0f;
+}
+
+.Repository__description {
+  margin: 0;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Repository__statistics {
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+.Repository__watchers {
+  margin-right: 1.25rem;
+}
+
+.Repository__icon {
+  margin-right: 0.375rem;
+}

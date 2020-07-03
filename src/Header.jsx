@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import './Header.css';
+import { useLocation, Link } from 'react-router-dom';
 
 const Header = (props) => {
   const { currentSearch, search } = props;
 
   const [searchTerm, setSearchTerm] = useState('');
+  const location = useLocation();
+
+  // Reset search whenever user changes pages
+  useEffect(() => {
+    setSearchTerm('');
+  }, [location]);
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -29,7 +36,7 @@ const Header = (props) => {
 
   return (
     <div className="Header">
-      <h1 className="Header__title">Github User List</h1>
+      <h1 className="Header__title"><Link className="Header__link" to="/">Github User List</Link></h1>
       <form className="Header__form">
         <input
           className="Header__input"

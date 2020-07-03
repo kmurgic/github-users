@@ -1,3 +1,7 @@
 .UserList {
-  padding-top: 8.125rem;
+  padding-top: 9.125rem;
+}
+
+.UserList--followers {
+  padding-top: 0;
 }
