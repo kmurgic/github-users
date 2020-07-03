@@ -20,7 +20,7 @@ const UserList = (props) => {
   /*  Search page is static since we are only filtering previously retrieved results, not searching
       the API. Therefore, no loading spinners should be shown when a search is in progress */
   const showLoadingSpinner = !searchTerm && loading && !filteredUsers.length;
-  const showLoadingEllipsis = !searchTerm && loading && filteredUsers.length;
+  const showLoadingEllipsis = !searchTerm && loading && !!filteredUsers.length;
 
   return (
     <div className={containerClass}>

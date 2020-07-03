@@ -16,7 +16,7 @@ const RepositoryList = (props) => {
   /*  Search page is static since we are only filtering previously retrieved results, not searching
       the API. Therefore, no loading spinners should be shown when a search is in progress */
   const showLoadingSpinner = !searchTerm && loading && !filteredRepos.length;
-  const showLoadingEllipsis = !searchTerm && loading && filteredRepos.length;
+  const showLoadingEllipsis = !searchTerm && loading && !!filteredRepos.length;
 
   return (
     <div className="RepositoryList">
