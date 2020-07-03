@@ -8,10 +8,11 @@ import {
 import Header from '../Header';
 import UserList from '../UserList';
 import UserProfile from '../UserProfile';
-import './index.css';
 import fetchUsers from '../../api/fetchUsers';
 import fetchRepositories from '../../api/fetchRepositories';
 import fetchFollowers from '../../api/fetchFollowers';
+import NotFound from '../NotFound';
+import './index.css';
 
 function App() {
   const location = useLocation();
@@ -56,6 +57,12 @@ function App() {
   // TODO: Better error handling
   const handleError = (error) => console.error(error);
 
+  const followersPathRegex = /^\/[a-z\d-]*\/followers$/;
+  const isFollowersPage = followersPathRegex.test(location.pathname);
+
+  const repositoriesPathRegex = /^\/[a-z\d-]*\/repositories$/;
+  const isRepositoriesPage = repositoriesPathRegex.test(location.pathname);
+
   useEffect(() => {
     const fetchMoreUsersIfNeeded = async () => {
       const repeatUrl = nextUserUrl === previousUserUrl.current;
@@ -75,8 +82,6 @@ function App() {
       }
     };
     const fetchMoreRepositoriesIfNeeded = async () => {
-      const repositoriesPathRegex = /^\/[a-z\d-]*\/repositories$/;
-      const isRepositoriesPage = repositoriesPathRegex.test(location.pathname);
       if (!isRepositoriesPage) {
         if (repositoriesForSelectedUser.length) {
           setRepositoriesForSelectedUser([]);
@@ -127,8 +132,6 @@ function App() {
       }
     };
     const fetchMoreFollowersIfNeeded = async () => {
-      const followersPathRegex = /^\/[a-z\d-]*\/followers$/;
-      const isFollowersPage = followersPathRegex.test(location.pathname);
       if (!isFollowersPage) {
         if (followersForSelectedUser.length) {
           setFollowersForSelectedUser([]);
@@ -189,12 +192,18 @@ function App() {
   }, [
     location.pathname, nextUserUrl, searchTerm, usersLoading, users, repositoriesLoading,
     followersLoading, repositories, followers, repositoriesForSelectedUser.length,
-    followersForSelectedUser.length,
+    followersForSelectedUser.length, isRepositoriesPage, isFollowersPage,
   ]);
 
-  if (!users.length && location.pathname !== '/') {
+  if (!users.length && (isFollowersPage || isRepositoriesPage)) {
     return (
       <Redirect to="/" />
+    );
+  }
+
+  if (location.pathname !== '/' && !isFollowersPage && !isRepositoriesPage) {
+    return (
+      <NotFound />
     );
   }
 
