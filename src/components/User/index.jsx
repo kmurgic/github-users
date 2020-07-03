@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import './User.css';
+import './index.css';
 
 const User = memo((props) => {
   const {

@@ -4,11 +4,11 @@ import {
   Route,
   useLocation,
 } from 'react-router-dom';
-import Header from './Header';
-import users from './fixtures/users';
-import UserList from './UserList';
-import './App.css';
-import UserProfile from './UserProfile';
+import Header from '../Header';
+import users from '../../fixtures/users';
+import UserList from '../UserList';
+import UserProfile from '../UserProfile';
+import './index.css';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');

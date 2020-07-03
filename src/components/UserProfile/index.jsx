@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import {
   useParams, Link, useRouteMatch, Switch, Route,
 } from 'react-router-dom';
-import User from './User';
-import RepositoryList from './RepositoryList';
-import UserList from './UserList';
-import followers from './fixtures/followers';
-import './UserProfile.css';
-import repos from './fixtures/repos';
+import User from '../User';
+import RepositoryList from '../RepositoryList';
+import UserList from '../UserList';
+import followers from '../../fixtures/followers';
+import repos from '../../fixtures/repos';
+import './index.css';
 
 const UserProfile = (props) => {
   const { searchTerm, users } = props;

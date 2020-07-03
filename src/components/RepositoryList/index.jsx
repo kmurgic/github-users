@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Repository from './Repository';
-import './RepositoryList.css';
+import Repository from '../Repository';
+import './index.css';
 
 const RepositoryList = (props) => {
   const { searchTerm, repos } = props;

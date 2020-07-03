@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import User from './User';
-import './UserList.css';
+import User from '../User';
+import './index.css';
 
 const UserList = (props) => {
   const { isFollowerList, searchTerm, users } = props;

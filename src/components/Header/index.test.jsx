@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import Header from './Header';
-import renderWithRouter from './renderWithRouter';
+import Header from '.';
+import renderWithRouter from '../../renderWithRouter';
 
 test('updates search text', () => {
   const mockSearch = jest.fn();

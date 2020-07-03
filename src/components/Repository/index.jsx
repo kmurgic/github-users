@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faCodeBranch } from '@fortawesome/free-solid-svg-icons';
-import './Repository.css';
+import './index.css';
 
 const Repository = (props) => {
   const {
