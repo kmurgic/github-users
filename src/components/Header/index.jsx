@@ -36,7 +36,7 @@ const Header = (props) => {
 
   return (
     <div className="Header">
-      <h1 className="Header__title"><Link className="Header__link" to={`${process.env.PUBLIC_URL}`}>Github User List</Link></h1>
+      <h1 className="Header__title"><Link className="Header__link" to={`${process.env.PUBLIC_URL}/`}>Github User List</Link></h1>
       <form className="Header__form">
         <input
           className="Header__input"

@@ -67,7 +67,7 @@ function App() {
     const fetchMoreUsersIfNeeded = async () => {
       const repeatUrl = nextUserUrl === previousUserUrl.current;
       if (!searchTermRef.current && !usersLoading && !repeatUrl && nextUserUrl !== null
-        && location.pathname === `${process.env.PUBLIC_URL}` && getNumberOfHiddenItems() < 100) {
+        && location.pathname === `${process.env.PUBLIC_URL}/` && getNumberOfHiddenItems() < 100) {
         previousUserUrl.current = nextUserUrl;
         setUsersLoading(true);
         const { error, nextUrl, userList } = await fetchUsers(nextUserUrl);
@@ -201,11 +201,11 @@ function App() {
 
   if (!users.length && (isFollowersPage || isRepositoriesPage)) {
     return (
-      <Redirect to={`${process.env.PUBLIC_URL}`} />
+      <Redirect to={`${process.env.PUBLIC_URL}/`} />
     );
   }
 
-  if (location.pathname !== `${process.env.PUBLIC_URL}` && !isFollowersPage && !isRepositoriesPage) {
+  if (location.pathname !== `${process.env.PUBLIC_URL}/` && !isFollowersPage && !isRepositoriesPage) {
     return (
       <NotFound />
     );
@@ -215,7 +215,7 @@ function App() {
     <div className="App">
       <Header search={search} currentSearch={searchTerm} />
       <Switch>
-        <Route exact path={`${process.env.PUBLIC_URL}`}>
+        <Route exact path={`${process.env.PUBLIC_URL}/`}>
           <UserList loading={usersLoading} searchTerm={searchTerm} users={users} />
         </Route>
         <Route path={`${process.env.PUBLIC_URL}/:username`}>
